@@ -30,10 +30,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Executable
-        uses: Nuitka/Nuitka-Action@main
+        uses: Nuitka/Nuitka-Action@25b73b2219d271cb41ce1a185a91f71bba5da115
         with:
           nuitka-version: main
-          script-name: main
+          script-name: main.py
           onefile: true
 
       - name: Upload Artifacts
