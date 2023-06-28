@@ -17,7 +17,6 @@ Follow the steps below to install Eros-View:
 Clone the repository to your local machine. Use the command below:
 ```
 git clone https://github.com/username/eros-view.git
-
 ```
 
 ### Step 2: Navigate to the Directory
