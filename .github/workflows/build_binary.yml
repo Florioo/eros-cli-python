@@ -1,13 +1,17 @@
 name: Python build binaries
 
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch:
+#push:
+
+#   branches: [ master ]
 jobs:
   build:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ ubuntu-latest, windows-latest]
+        
+        # Disabled mac-os macos-latest because of expensive build minutes
 
     runs-on: ${{ matrix.os }}
 
