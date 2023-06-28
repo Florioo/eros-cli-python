@@ -2,9 +2,7 @@ name: Python build binaries
 
 on:
   workflow_dispatch:
-#push:
 
-#   branches: [ master ]
 jobs:
   build:
     strategy:
