@@ -1,2 +1,0 @@
-git+https://github.com/Florioo/eros-python
-click==8.1.3
