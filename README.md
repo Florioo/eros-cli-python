@@ -29,7 +29,7 @@ After installation, you can verify if Eros-View was installed correctly. Run the
 eros-view --help
 ```
 If the installation was successful, this command should show the help menu of Eros-View.
-
+ 
 
 ## Installation from source
 
