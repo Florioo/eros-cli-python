@@ -1,17 +1,21 @@
 name: Python build binaries
 
 on:
+
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
   workflow_dispatch:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest]
-        #, windows-latest
-        # Disabled mac-os macos-latest because of expensive build minutes
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check-out repository
@@ -34,22 +38,4 @@ jobs:
       - name: Test Package
         run: |
           eros-view --help
-
-      - name: Build Executable
-        uses: Nuitka/Nuitka-Action@main
-        with:
-          nuitka-version: main
-          script-name: main.py
-          onefile: true
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ runner.os }} Build
-          path: |
-            build/*.exe
-            build/*.bin
-            build/*.app/**/*
-
-      # Run the app in linux windos or mac
 
