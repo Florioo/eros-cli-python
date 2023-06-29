@@ -7,6 +7,27 @@ This Python program is built on top of the Eros library to facilitate the easy l
 This program requires the following Python packages:
 - eros-core
 - click
+- 
+## Installation using pip
+
+Follow the steps below to install Eros-View:
+
+### Step 1: Install the Package with PIP
+
+Install the package using pip. Run the command:
+
+```
+pip install git+https://github.com/Florioo/eros-python-logger-app
+```
+
+### Step 2: Verify Installation
+
+After installation, you can verify if Eros-View was installed correctly. Run the command:
+```
+eros-view --help
+```
+If the installation was successful, this command should show the help menu of Eros-View.
+
 
 ## Installation from source
 
