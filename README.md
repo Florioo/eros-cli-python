@@ -1,4 +1,4 @@
-[![Python test package installation](https://github.com/Florioo/eros-python-logger-app/actions/workflows/test_installation.yml/badge.svg)](https://github.com/Florioo/eros-python-logger-app/actions/workflows/test_installation.yml)
+[![Python test package installation](https://github.com/Florioo/eros-python-logger-app/actions/workflows/test_installation.yml/badge.svg?branch=master)](https://github.com/Florioo/eros-python-logger-app/actions/workflows/test_installation.yml)
 
 # Eros Communication Logger
 
