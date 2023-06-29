@@ -23,4 +23,4 @@ dependencies = [
 dynamic = ["version"]
 
 [project.scripts]
-eros-view = "main:eros_log"
+eros-view = "main:cli"
