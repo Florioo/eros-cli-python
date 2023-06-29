@@ -1,4 +1,5 @@
-name: Python build binaries
+name: Python test package installation
+# Tests dependencies installation
 
 on:
 
