@@ -115,7 +115,7 @@ This program provides command line interfaces for UART, UDP and TCP channels.
 To open a UART channel, use the `uart` command with the following syntax:
 
 ```
-eros-view uart [CHANNEL] --port [PORT] --baud [BAUD_RATE] --vid [VENDOR_ID]
+eros uart [CHANNEL] --port [PORT] --baud [BAUD_RATE] --vid [VENDOR_ID]
 ```
 Arguments:
 - `[CHANNEL]`: Channel number (default is 1)
