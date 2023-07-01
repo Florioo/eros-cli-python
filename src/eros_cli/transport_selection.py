@@ -1,4 +1,4 @@
-from eros import Eros, ErosSerial,ErosUDP,ErosTCP,ErosZMQ
+from eros_core import Eros, ErosSerial,ErosUDP,ErosTCP,ErosZMQ
 import time
 import click
 
@@ -36,7 +36,7 @@ def udp(ctx,ip, port):
 def tcp(ctx, ip, port):
     click.echo(f"Opening TCP with IP {ip} and port {port}")
     ctx.ensure_object(dict)
-    transport = ErosTCP(ip, port)
+    transport = ErosTCP(ip, port,timeout = 3, auto_reconnect = True)
     ctx.obj['eros'] = Eros(transport)
     
 @click.group(chain=True)

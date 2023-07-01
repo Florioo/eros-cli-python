@@ -20,7 +20,7 @@ classifiers = [
 
 dependencies = [
     "click==8.1.3",
-    "eros@git+https://github.com/Florioo/eros-python.git",
+    # "eros@git+https://github.com/Florioo/eros-python.git",
     "blessed",
 ]
 

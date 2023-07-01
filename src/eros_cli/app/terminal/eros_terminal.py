@@ -1,4 +1,4 @@
-from eros import Eros 
+from eros_core import Eros, TransportStates
 from blessed import Terminal
 import threading
 import time
@@ -7,16 +7,16 @@ from eros_core import Eros, CLIResponse, ChannelType, CommandFrame
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
+COLOR_YELLOW = "\033[93m"
 COLOR_RESET = "\033[0m"
 
 class ErosTerminal():
     def __init__(self, eros:Eros, main_channel, aux_channel) -> None:
-        self.eros = eros
+        self.eros:Eros = eros
         self.main_channel = main_channel
         self.aux_channel = aux_channel
 
         self.resp = CLIResponse(eros, main_channel, self.rx_packet_callback)
-        
 
         self.main_receive_buffer = b""
         self.main_transmit_queue = Queue()
@@ -24,6 +24,7 @@ class ErosTerminal():
         self.eros.attach_channel_callback(self.aux_channel, self.receive_aux)
        
         self.transmit_thread_handle = threading.Thread(target=self.transmit_thread, daemon=True)
+    
         
     def transmit_thread(self):
         last_transmit = time.time()

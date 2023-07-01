@@ -1,6 +1,7 @@
 import click
 from eros_core import Eros
 from .decorators import eros_check
+from .utils.transport_status_log import TransportStatusHandler
 
 @click.command(name="log", help="Log the data of a specific channel")
 @click.pass_context
@@ -11,3 +12,4 @@ def app_log(ctx,channel):
     click.echo(click.style(f"Starting the logger", fg='green'))
     eros.attach_channel_callback(channel, lambda data: print(data.decode(),end=""))
    
+    TransportStatusHandler(eros)

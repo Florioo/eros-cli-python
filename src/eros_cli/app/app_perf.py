@@ -7,6 +7,7 @@ from rich.table import Table
 from eros_core import Eros
 from .decorators import eros_check
 
+from .utils.transport_status_log import TransportStatusHandler
 
      
 def generate_perf_table(eros):
@@ -32,6 +33,7 @@ def generate_perf_table(eros):
 @eros_check
 def app_perf(ctx,channel):
     eros = ctx.obj.get('eros')
+    TransportStatusHandler(eros)
     
     click.echo(click.style(f"Starting the perf", fg='green'))
         

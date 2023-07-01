@@ -4,6 +4,7 @@ import threading
 import zmq as pyzmq
 from eros_core import Eros
 from .decorators import eros_check
+from .utils.transport_status_log import TransportStatusHandler
 
 def poll_socket(socket, timetick = 100):
     poller = pyzmq.Poller()
@@ -50,6 +51,7 @@ def zmq_broker(eros,port):
 @eros_check
 def app_zmq(ctx,port):
     eros = ctx.obj.get('eros')
+    TransportStatusHandler(eros)
     click.echo(click.style(f"Starting the zmq broker", fg='green'))
     
     # Start the zmq broker
