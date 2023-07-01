@@ -38,5 +38,5 @@ jobs:
       # Test package
       - name: Test Package
         run: |
-          eros-view --help
+          eros --help
 

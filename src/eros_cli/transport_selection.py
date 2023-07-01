@@ -1,11 +1,16 @@
 from eros import Eros, ErosSerial,ErosUDP,ErosTCP,ErosZMQ
 import time
 import click
-from .app_log import log as app_log
-from .app_cli import cli as app_cli 
-from .app_zmq import zmq as app_zmq
-from .app_perf import perf as app_perf
-from .app_test import test as app_test
+from .app.app_log  import app_log
+from .app.app_cli  import app_cli 
+from .app.app_zmq  import app_zmq
+from .app.app_perf import app_perf
+# from .app_zmq import zmq as app_zmq
+# from .app_test import test as app_test
+from .app.app_machine_cli import app_machine_cli
+from .app.app_dump import app_dump
+
+
 
 @click.group(chain=True)
 @click.option('--port', default="auto", help='Port to use for UART communication')
@@ -68,28 +73,15 @@ def process_pipeline(data,**kwargs):
         time.sleep(1)
         
 # Register the log command with the transport groups
-uart.add_command(app_log)
-tcp.add_command(app_log)
-udp.add_command(app_log)
-zmq.add_command(app_log)
+def attach_app(app):
+    uart.add_command(app)
+    tcp.add_command(app)
+    udp.add_command(app)
+    zmq.add_command(app)
 
-uart.add_command(app_cli)
-tcp.add_command(app_cli)
-udp.add_command(app_cli)
-zmq.add_command(app_cli)
-
-uart.add_command(app_zmq)
-tcp.add_command(app_zmq)
-udp.add_command(app_zmq)
-zmq.add_command(app_zmq)
-
-uart.add_command(app_perf)
-tcp.add_command(app_perf)
-udp.add_command(app_perf)
-zmq.add_command(app_perf)
-
-
-uart.add_command(app_test)
-tcp.add_command(app_test)
-udp.add_command(app_test)
-zmq.add_command(app_test)
+attach_app(app_log)
+attach_app(app_cli)
+attach_app(app_zmq)
+attach_app(app_perf)
+attach_app(app_machine_cli)
+attach_app(app_dump)

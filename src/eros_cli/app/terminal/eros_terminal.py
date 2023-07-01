@@ -3,6 +3,7 @@ from blessed import Terminal
 import threading
 import time
 from queue import Queue
+
 class ErosTerminal():
     def __init__(self, eros:Eros, main_channel, aux_channel) -> None:
         self.eros = eros

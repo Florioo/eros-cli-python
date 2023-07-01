@@ -1,8 +1,10 @@
 import click
 import time
-import zmq as pyzmq
-from eros import Eros
 import threading
+import zmq as pyzmq
+from eros_core import Eros
+from .decorators import eros_check
+
 def poll_socket(socket, timetick = 100):
     poller = pyzmq.Poller()
     poller.register(socket, pyzmq.POLLIN)
@@ -42,15 +44,12 @@ def zmq_broker(eros,port):
 
     
     
-@click.command()
-@click.option('--port', default=2000,type=int, help='Port to bind to')
+@click.command(name="zmq", help="Start the zmq broker which allows other applications to connect")
+@click.option('--port', default=2000, type=int, help='Port to bind to')
 @click.pass_context
-def zmq(ctx,port):
-    # Check if the context is properly set
-    if not ctx.obj.get('eros'):
-        click.echo("No Eros object found",err=True)
-        return False
-
+@eros_check
+def app_zmq(ctx,port):
+    eros = ctx.obj.get('eros')
     click.echo(click.style(f"Starting the zmq broker", fg='green'))
     
     # Start the zmq broker
