@@ -3,6 +3,11 @@ from blessed import Terminal
 import threading
 import time
 from queue import Queue
+from eros_core import Eros, CLIResponse, ChannelType, CommandFrame
+
+COLOR_RED = "\033[91m"
+COLOR_GREEN = "\033[92m"
+COLOR_RESET = "\033[0m"
 
 class ErosTerminal():
     def __init__(self, eros:Eros, main_channel, aux_channel) -> None:
@@ -10,10 +15,12 @@ class ErosTerminal():
         self.main_channel = main_channel
         self.aux_channel = aux_channel
 
+        self.resp = CLIResponse(eros, main_channel, self.rx_packet_callback)
+        
+
         self.main_receive_buffer = b""
         self.main_transmit_queue = Queue()
                 
-        self.eros.attach_channel_callback(self.main_channel, self.receive_main)
         self.eros.attach_channel_callback(self.aux_channel, self.receive_aux)
        
         self.transmit_thread_handle = threading.Thread(target=self.transmit_thread, daemon=True)
@@ -34,31 +41,19 @@ class ErosTerminal():
             
             last_transmit = time.time()
             self.eros.transmit_packet(self.main_channel, bytes(buffer))
-        
-    def receive_main(self, data):
-        first_byte = data[0]
-        
-        if not first_byte:
-            self.main_receive_buffer += data[1:]
-            return
-            
-        first_byte -=1 
-        
-        is_error = first_byte >0
-        
-        if is_error:
-            # Colorize
-            if len(self.main_receive_buffer) > 0:
-                self.terminal_write(f"\033[91mError: {self.main_receive_buffer.decode()}\033[0m\n")
+    
+    def rx_packet_callback(self, packet):
+        if packet.resp_type == ChannelType.NACK:
+            if len(packet.data):
+                self.terminal_write( f"{COLOR_RED}Error: {self.main_receive_buffer.decode()}{COLOR_RESET}\n")
             else:
-                self.terminal_write(f"\033[91mError\033[0m\n")
+                self.terminal_write( f"{COLOR_RED}Error{COLOR_RESET}\n")
         else:
-            if len(self.main_receive_buffer) > 0:        
-                self.terminal_write(f"{self.main_receive_buffer.decode()}\n")
+            if len(packet.data):
+                self.terminal_write( f"{packet.data.decode()}\n")
             else:
-                self.terminal_write(f"\033[92mOK\033[0m\n")
-        self.main_receive_buffer = b""    
-        
+                self.terminal_write( f"{COLOR_GREEN}OK{COLOR_RESET}\n")
+            
     def receive_aux(self, data):
         self.terminal_write(f"{data.decode()}")
         
