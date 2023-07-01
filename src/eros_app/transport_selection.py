@@ -59,10 +59,10 @@ def zmq(ctx, port):
 @tcp.result_callback()
 @udp.result_callback()
 def process_pipeline(data,**kwargs):
-    click.echo(click.style(f"Processing with {data} {kwargs}", fg='green'))
     for ret in data:
         if ret == False:
             return
+    click.echo(click.style(f"Waiting for applicaiton to finish", fg='white'))
         
     while True:
         time.sleep(1)
