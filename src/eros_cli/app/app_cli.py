@@ -1,6 +1,6 @@
 import click
 from eros_core import Eros
-from .terminal.eros_terminal import ErosTerminal
+from .utils.eros_terminal import ErosTerminal
 from .decorators import eros_check
 from .utils.transport_status_log import TransportStatusHandler
 @click.command(name="cli", help="User oriented Command Line Interface for the Eros")
