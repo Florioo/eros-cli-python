@@ -3,7 +3,7 @@ from blessed import Terminal
 import threading
 import time
 from queue import Queue
-from eros_core import Eros, CLIResponse, ChannelType, CommandFrame
+from eros_core import Eros, CLIResponse, ResponseType, CommandFrame
 
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
@@ -44,7 +44,7 @@ class ErosTerminal():
             self.eros.transmit_packet(self.main_channel, bytes(buffer))
     
     def rx_packet_callback(self, packet):
-        if packet.resp_type == ChannelType.NACK:
+        if packet.resp_type == ResponseType.NACK:
             if len(packet.data):
                 self.terminal_write( f"{COLOR_RED}Error: {self.main_receive_buffer.decode()}{COLOR_RESET}\n")
             else:
