@@ -22,6 +22,8 @@ dependencies = [
     "click==8.1.3",
     "eros-core@git+https://github.com/Florioo/eros-core-python.git",
     "blessed",
+    'si-prefix==1.2.2',
+    'rich==13.4.2'
 ]
 
 dynamic = ["version"]
