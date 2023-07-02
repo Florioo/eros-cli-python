@@ -1,5 +1,4 @@
 import click
-from . import transport_selection
 import logging
 from .transport import drv_tcp, drv_udp, drv_zmq, drv_uart
 import time
