@@ -46,12 +46,16 @@ class ErosTerminal():
     def rx_packet_callback(self, packet):
         if packet.resp_type == ResponseType.NACK:
             if len(packet.data):
-                self.terminal_write( f"{COLOR_RED}Error: {self.main_receive_buffer.decode()}{COLOR_RESET}\n")
+                self.terminal_write( f"{COLOR_RED}Error: {packet.data.decode()}{COLOR_RESET}\n")
             else:
                 self.terminal_write( f"{COLOR_RED}Error{COLOR_RESET}\n")
         else:
             if len(packet.data):
-                self.terminal_write( f"{packet.data.decode()}\n")
+                # If ends with a newline, print it without a newline
+                if packet.data[-1] == 10:
+                    self.terminal_write( f"{packet.data.decode()}")
+                else:
+                    self.terminal_write( f"{packet.data.decode()}\n")
             else:
                 self.terminal_write( f"{COLOR_GREEN}OK{COLOR_RESET}\n")
             
