@@ -35,7 +35,7 @@ def cb_log(data:bytes):
 @click.pass_context
 @eros_check
 @click.option('--channel', default=1, help='Channel to log')
-@click.option('--log_failed',is_flag=True, show_default=True, default=False, help='also log failed packets (which could not be decoded)')
+@click.option('--log_failed', '-f',is_flag=True, show_default=True, default=False, help='also log failed packets (which could not be decoded)')
 def app_log(ctx,channel,log_failed):
     eros = ctx.obj.get('eros')
     click.echo(click.style(f"Starting the logger", fg='green'))

@@ -37,8 +37,6 @@ cli.add_command(drv_tcp.tcp)
 cli.add_command(drv_zmq.zmq)
 
 
-
-
         
 # Register the log command with the transport groups
 def attach_app(app):
