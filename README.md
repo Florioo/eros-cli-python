@@ -107,7 +107,52 @@ Optional Arguments:
 
 ## Application
 
+The final argument are the applications, these specify what to do with the output. Multiple applications can also be specified in the command by chaining them.
+
+To get the arguments fot a specifc application, type help after it
+
+For example:
+```
+eros uart log --help
+
+Usage: eros uart log [OPTIONS]
+
+  Log the data of a specific channel
+
+Options:
+  --channel INTEGER  Channel to monitor
+  -f, --log_failed   also log failed packets (which could not be decoded)
+  --help             Show this message and exit.
+```
+
 
 ### log
 This is one of the basic applications which provides textual logs
-see code for arguments
+
+### dump
+This will dump all the data received from eros
+
+### cli
+This provides a interactive CLI to the device.
+
+Note: the device needs repl-CLI enabled for this to work
+
+### m-cli
+This provides a semi-interactive CLI to the device.
+
+This can be used to test the machine cli
+
+Note: the device needs machine-CLI enabled for this to work
+
+### perf
+This is an utility to monitor the troughput eros
+is a great combination with `zmq`:
+
+For example:
+```
+eros uart zmq perf
+```
+
+
+### zmq
+This exposes eros over zmq, making it accesible for multiple programs
