@@ -14,6 +14,25 @@
             "module": "eros_cli.entrypoint",
             "args": ["uart", "log", "--log_failed"],
             "justMyCode": false
+        },
+        {
+            "name": "eros uart cli",
+            "type": "python",
+            "request": "launch",
+            // "program": "src/eros_cli/entrypoint.py",
+            "console": "integratedTerminal",
+            "module": "eros_cli.entrypoint",
+            "args": ["uart", "cli"],
+            "justMyCode": false
+        },
+        {
+            "name": "eros udp cli",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "module": "eros_cli.entrypoint",
+            "args": ["udp --ip 10.172.255.27", "cli"],
+            "justMyCode": false
         }
     ]
 }
