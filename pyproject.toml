@@ -18,7 +18,7 @@ classifiers = [
 
 dependencies = [
     "click==8.1.3",
-    "eros-core == 1.0.5",
+    "eros-core == 1.0.6",
     "blessed",
     'si-prefix==1.2.2',
     'rich==13.4.2'
