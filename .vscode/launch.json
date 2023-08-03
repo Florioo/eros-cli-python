@@ -31,7 +31,7 @@
             "request": "launch",
             "console": "integratedTerminal",
             "module": "eros_cli.entrypoint",
-            "args": ["udp --ip 10.172.255.27", "cli"],
+            "args": ["udp", "--ip","10.172.255.27", "cli"],
             "justMyCode": false
         }
     ]
